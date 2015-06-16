@@ -1,0 +1,9 @@
+.song {
+	display: inline-block;
+}
+
+.commands {
+	display: inline-block;
+	margin-bottom: 0.5em;
+    vertical-align: bottom;
+}

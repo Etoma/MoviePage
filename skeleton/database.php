@@ -20,5 +20,53 @@ class database {
         $mysqli->close();
         return $user;
     }
+
+    public function getAllSongs()
+    {
+        $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
+        $result = $mysqli->query("SELECT * FROM songs");
+        $songs = array();
+        while($row = $result->fetch_assoc()) {
+            $songs[] = $row;
+        }
+        $mysqli->close();
+        return $songs;
+    }
+
+    public function searchSongs($search)
+    {
+        $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
+        $result = $mysqli->query("SELECT * FROM songs WHERE songTitle LIKE '%$search%'");
+        $songs = array();
+        while($row = $result->fetch_assoc()) {
+            $songs[] = $row;
+        }
+        $mysqli->close();
+        return $songs;
+    }
+
+     public function getAllVideos()
+    {
+        $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
+        $result = $mysqli->query("SELECT * FROM movies");
+        $movies = array();
+        while($row = $result->fetch_assoc()) {
+            $movies[] = $row;
+        }
+        $mysqli->close();
+        return $movies;
+    }
+
+    public function searchVideos($search)
+    {
+        $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
+        $result = $mysqli->query("SELECT * FROM movies WHERE movieTitle LIKE '%$search%'");
+        $movies = array();
+        while($row = $result->fetch_assoc()) {
+            $movies[] = $row;
+        }
+        $mysqli->close();
+        return $movies;
+    }
 }
 $db = new database;

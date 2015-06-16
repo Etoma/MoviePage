@@ -1,6 +1,7 @@
 html {
 	font-size: 100%;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	min-height: 100%;
 }
 
 body {
@@ -48,6 +49,18 @@ nav > ul > li > a {
 	margin: 1em 1em 0;
 }
 
-.container {
+#content {
 	overflow: hidden;
+	min-height: 100%;
+	position: relative;
+}
+
+footer {
+	position: relative;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	height: 4em;
+	font-style: italic;
+	padding: 1em;
 }

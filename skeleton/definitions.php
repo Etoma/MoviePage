@@ -16,10 +16,11 @@ if($_POST['user']) {
 if(!$_SESSION['user']) {
 	$users = $db->getAllUsers();
 }
-$mode = $_GET['mode'] ?: 'all';
+$mode = $_POST['mode'] ?: 'all';
 
 //for testing
 if($content === 'destroy')
 {
 	session_destroy();
 }
+?>

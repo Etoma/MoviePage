@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>My Movie and Audio Page</title>
 	<link rel="stylesheet" type="text/css" href="./css/base.css">
+	<link rel="stylesheet" type="text/css" href="./css/<?php echo $content ?>.css">
 	<script type="text/javascript" src="./js/base.js"></script>
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
 </head>
