@@ -1,5 +1,7 @@
-<?php $content = $_GET["page"] ?: 'home' ?>
-<?php include('skeleton/head.php'); ?>
+<?php
+include('skeleton/definitions.php');
+include('skeleton/head.php');
+?>
 	<div class="container">
 		<?php include('view/' . $content . '.php'); ?>
 	</div>

@@ -1,41 +1,51 @@
 html {
 	font-size: 100%;
-	font-family: Verdana, sans-serif;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+body {
+	padding: 0;
 }
 
 nav {
+	background-color:  #282828;
+	border: 1px solid #dedede;
+	border-radius: 4px;
+	box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+	color: #888;
+	display: block;
+	overflow: hidden;
 	width: 100%;
-	background: url('../img/header_bg.png');
-	position: absolute;
-	top: 0;
-	left: 0;
 }
 
 nav ul {
-	list-style: none;
-	height: 1em;
+	margin: 0;
+	padding: 0;
+	text-align: middle;
 }
 
-nav li {
-	float: left;
-	margin-right: 1em;
-	height: 100%;
-	border: 1 solid #fff;
-	display: block;
+nav ul li {
+	display: inline-block;
+	list-style-type: none;
 }
 
-.navbar-nav > .active > a {
-	background-image: linear-gradient(to bottom, #222 0px, #282828 100%);
-}
-
-nav a {
+nav > ul > li.active > a {
 	color: #fff;
-	text-decoration: none;
-	display: block;
+	box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25) inset;
+	background-color: #080808;
 }
 
-main {
-	margin-top: 3em;
+nav > ul > li > a {
+	color: #aaa;
+	display: block;
+	line-height: 56px;
+	padding: 0 24px;
+	text-decoration: none;
+}
+
+#user-selection {
+	float: right;
+	margin: 1em 1em 0;
 }
 
 .container {

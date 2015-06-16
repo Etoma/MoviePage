@@ -1,6 +1,6 @@
 <main>
 	<h2>Dies ist der Hauptbereich</h2>
-	<p>Hier kommen weiter Infos</p>
+	<p>Hier kommen weitere Infos</p>
 	<aside id="favorites">
 		<h3>Favoriten</h3>
 		<p>Hier sind die Favoriten immer verfügbar</p>
