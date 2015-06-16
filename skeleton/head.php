@@ -14,8 +14,8 @@
 			<li class=<?php echo $content === 'songs' ? 'active' : 'inactive' ?>><a href="./?page=songs">Songs</a></li>
 			<li class=<?php echo $content === 'movies' ? 'active' : 'inactive' ?>><a href="./?page=movies">Movies</a></li>
 			<li id='user-selection'>
-				<?php if($user) {
-					echo $user;
+				<?php if($_SESSION['user']) {
+					echo $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'];
 				} else {
 					echo "User selection: <form method='POST'><select onchange='this.form.submit()' name='user'>";
 					echo "<option value = 0>Please choose a user</option>";

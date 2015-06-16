@@ -1,19 +1,25 @@
-<?php 
+<?php
+//disable PHP error output
 error_reporting(0);
+//start session if it does not exists
 if (!isset($_SESSION)){
   session_start();
 }
+include('skeleton/database.php');
+//get the page taht will be shown
 $content = $_GET["page"] ?: 'home';
-$_SESSION['user'] = $_POST['user'] ?: $_SESSION['user'];
-$user = $_SESSION['user'] ?: 0;
+//show user
+if($_POST['user']) {
+	$_SESSION['user'] = $db->getUserById($_POST['user']);
+}
+
+if(!$_SESSION['user']) {
+	$users = $db->getAllUsers();
+}
 $mode = $_GET['mode'] ?: 'all';
-if(!$user) {
-	$mysqli = new mysqli("localhost", "root", "", "movieandaudio");
-	$result = $mysqli->query("SELECT * FROM users");
-	$users = array();
-    while($row = $result->fetch_assoc()) {
-        $users[] = $row;
-    }
-    $result->free();
-    $mysqli->close();
+
+//for testing
+if($content === 'destroy')
+{
+	session_destroy();
 }
