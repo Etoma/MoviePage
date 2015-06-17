@@ -1,14 +1,22 @@
 <main>
 	<h2>Movies</h2>
-	<form action="./?page=upload" method="POST"><button type="submit" value="video" name="mode">upload new video</button><form>
+		<form action="./?page=movies" method="POST">
+		<input type="text" placeholder="search" name="keyword"> <span>use * as placeholder</span>
+		<input type="hidden" value="search" name="mode">
+	</form>
+	<form action="./?page=upload" method="POST">
+		<button type="submit" value="video" name="mode">upload new video</button>
+	<form>
 	<br><br>
 	<?php 
 	if($mode === 'all')
 		{
 			$movies = $db->getAllVideos();
 		} elseif ($mode === 'search') {
-			$movies = $db->searchVideos();
+			$movies = $db->searchVideos($_POST['keyword']);
 		}
+		if(count($movies))
+		{
 		foreach ($movies as $video) {
 				echo '<div class="video">';
 				echo $video['movieTitle'];
@@ -20,5 +28,8 @@
 				echo '<div class="commands"><button type="button">Edit</button><button type="button">Delete</button></div>';
 				echo '<br>';
 			}
+		} else {
+		echo 'No movies found';
+	}
 	?>
 </main>

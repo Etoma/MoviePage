@@ -35,6 +35,7 @@ class database {
 
     public function searchSongs($search)
     {
+        $search = str_replace('*', '%', $search);
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $result = $mysqli->query("SELECT * FROM songs WHERE songTitle LIKE '%$search%'");
         $songs = array();
@@ -59,6 +60,7 @@ class database {
 
     public function searchVideos($search)
     {
+        $search = str_replace('*', '%', $search);
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $result = $mysqli->query("SELECT * FROM movies WHERE movieTitle LIKE '%$search%'");
         $movies = array();
