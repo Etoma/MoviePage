@@ -1,13 +1,13 @@
 <?php
 if($_POST['songId']) {
-	$name = $db->getSongNameById($_POST['songId']);
-	unlink('music/' . $name);
+	$data = $db->getSongDataById($_POST['songId']);
+	unlink('music/' . $data['songName']);
 	$db->deleteSongById($_POST['songId']);
 	header("Location: ./?page=songs");
 }
 if($_POST['movieId']) {
-	$name = $db->getVideoNameById($_POST['movieId']);
-	unlink('videos/' . $name);
+	$data = $db->getVideoDataById($_POST['movieId']);
+	unlink('videos/' . $data['songName']);
 	$db->deleteVideoById($_POST['movieId']);
 	header("Location: ./?page=movies");
 }

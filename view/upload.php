@@ -25,7 +25,7 @@
 		if($_POST['submit'])
 		{
 			move_uploaded_file($_FILES["new-video"]["tmp_name"], "videos/" . $_FILES["new-video"]["name"]);
-			$db->insertNewVideo($_FILES["new-video"]["name"], $_POST['video-title'], $_POST['video-dexcription']);
+			$db->insertNewVideo($_FILES["new-video"]["name"], $_POST['video-title'], $_POST['video-description']);
 			echo 'Video was saved successfully';
 			unset($_FILES);
 			unset($_POST);

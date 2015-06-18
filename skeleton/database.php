@@ -87,22 +87,22 @@ class database {
         $mysqli->close();
     }
 
-    public function getSongNameById($songId)
+    public function getSongDataById($songId)
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $result = $mysqli->query("SELECT * FROM songs WHERE songID = $songId");
         $row = $result->fetch_assoc();
         $mysqli->close();
-        return $row["songName"];
+        return $row;
     }
 
-    public function getVideoNameById($movieId)
+    public function getVideoDataById($movieId)
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $result = $mysqli->query("SELECT * FROM movies WHERE movieID = $movieId");
         $row = $result->fetch_assoc();
         $mysqli->close();
-        return $row["movieName"];
+        return $row;
     }
 
     public function deleteVideoById($movieId)
@@ -113,10 +113,26 @@ class database {
         $mysqli->close();
     }
 
-     public function deleteSongById($songId)
+    public function deleteSongById($songId)
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $sql = "DELETE FROM `movieandaudio`.`songs` WHERE `songs`.`songID` = $songId";
+        $mysqli->query($sql);
+        $mysqli->close();
+    }
+
+    public function changeSong($title, $artist, $album, $songId)
+    {
+        $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
+        $sql = "UPDATE `movieandaudio`.`songs` SET songTitle = '$title', songArtist = '$artist', songAlbum = '$album' WHERE `songs`.`songID` = $songId";
+        $mysqli->query($sql);
+        $mysqli->close();
+    }
+
+    public function changeVideo($title, $description, $movieId)
+    {
+        $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
+        $sql = "UPDATE `movieandaudio`.`video` SET movieTitle = '$title', movieDescription = '$description' WHERE `movies`.`movieID` = $movieId";
         $mysqli->query($sql);
         $mysqli->close();
     }

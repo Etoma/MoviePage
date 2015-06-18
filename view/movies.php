@@ -24,8 +24,19 @@
 				echo '<video controls width="320" height="240">';
 				echo '<source src="./videos/' . $video['movieName'] . '" type="video/mp4">';
 				echo '</video>';
+				echo '</div><br>';
+				echo '<div class="commands">';
+				echo '<div class="edit">';
+				echo '<form method="POST" action="./?page=edit">';
+				echo '<button type="submit" value="' . $video["movieID"] . '" name="songId">Edit</button>';
+				echo '</form>';
 				echo '</div>';
-				echo '<div class="commands"><button type="button">Edit</button><button type="button">Delete</button></div>';
+				echo '<div class="delete">';
+				echo '<form method="POST" action="./?page=delete">';
+				echo '<button type="submit" value="' . $video["movieID"] . '" name="songId">Delete</button>';
+				echo '</form>';
+				echo '</div>';
+				echo '</div>';
 				echo '<br>';
 			}
 		} else {

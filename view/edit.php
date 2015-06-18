@@ -1,7 +1,37 @@
+<h2>Edit</h2>
 <?php
-if($_POST['songId']) {
-	echo $db->getSongNameById($_POST['songId']);
+if($_POST['save'] === 'song')
+{
+	$db->changeSong($_POST['songTitle'], $_POST['songArtist'], $_POST['songAlbum'], $_POST['songId']);
+	header("Location: ./?page=songs");
+	exit;
+
+} 
+elseif($_POST['save'] === 'movie') 
+{
+	$db->changeMovie($_POST['videoTitle'], $_POST['videoDescription'], $_POST['movieId']);
+	header("Location: ./?page=movies");
+	exit;
 }
-if($_POST['movieId']) {
-	echo $db->getVideoNameById($_POST['movieId']);
+elseif($_POST['songId']) {
+	$data = $db->getSongDataById($_POST['songId']);
+	unset($data['songName']);
+	unset($data['songID']);
+	echo '<form method="POST">';
+	echo '<input type="hidden" value="song" name="save">';
+	echo '<input type="hidden" value=' . $_POST['songId'] . ' name="songId">';
 }
+elseif($_POST['movieId']) {
+	$data = $db->getVideoDataById($_POST['movieId']);
+	unset($data['movieName']);
+	unset($data['movieID']);
+	echo '<form method="POST">';
+	echo '<input type="hidden" value="movie" name="save">';
+	echo '<input type="hidden" value=' . $_POST['movieId'] . ' name="movieId">';
+}
+foreach ($data as $key => $entry) {
+	echo '<label for="' . $key . '">' . $key . '</label><input type="text" value="' . $entry . '" name="' . $key . '" id="' . $key . '"><br>';
+}
+?>
+<button type="submit">Send</button>
+</form>

@@ -1,14 +1,7 @@
 <main>
-	<h2>Dies ist der Hauptbereich</h2>
-	<p>Hier kommen weitere Infos</p>
+	<h2>Welcome to my video and music library</h2>
 	<aside id="favorites">
 		<h3>Favoriten</h3>
-		<p>Hier sind die Favoriten immer verfügbar</p>
+		<p>the favorites of this user</p>
 	</aside>
-	<article>
-		<figure>
-			<img src='img/madrid.jpg' width="320" height="240" alt="Foto_Madrid">
-			<figcaption>Foto von Madrid</figcaption>
-		</figure>
-	</article>
 </main>
