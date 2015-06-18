@@ -1,7 +1,8 @@
 .commands {
-	margin-top: -1em;
+    margin-top: -1em;
 }
+
 .edit, .delete {
-	display: inline-block;
-	float: left;
+    display: inline-block;
+    float: left;
 }

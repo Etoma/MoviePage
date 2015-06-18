@@ -1,14 +1,14 @@
 .song {
-	display: inline-block;
+    display: inline-block;
 }
 
 .commands {
-	display: inline-block;
-	margin-bottom: 0.5em;
+    display: inline-block;
+    margin-bottom: 0.5em;
     vertical-align: bottom;
 }
 
 .edit, .delete {
-	display: inline-block;
-	float: left;
+    display: inline-block;
+    float: left;
 }

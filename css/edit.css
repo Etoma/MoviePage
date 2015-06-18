@@ -1,9 +1,10 @@
 label {
-	display: inline-block;
-	width: 15%;
-	vertical-align: middle;
+    display: inline-block;
+    width: 15%;
+    vertical-align: middle;
 }
+
 textarea {
-	display: inline-block;
-	vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 }
