@@ -21,7 +21,7 @@
 				echo '<div class="video">';
 				echo $video['movieTitle'];
 				echo '<br>';
-				echo '<video controls>';
+				echo '<video controls width="320" height="240">';
 				echo '<source src="./videos/' . $video['movieName'] . '" type="video/mp4">';
 				echo '</video>';
 				echo '</div>';

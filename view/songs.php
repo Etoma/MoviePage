@@ -6,8 +6,7 @@
 	</form>
 	<form action="./?page=upload" method="POST">
 		<button type="submit" value="song" name="mode">upload new song</button>
-	<form>
-	<br><br>
+	</form>
 	<?php 
 	if($mode === 'all')
 	{
@@ -26,8 +25,19 @@
 		echo '<audio controls>';
 		echo '<source src="./music/' . $song['songName'] . '" type="audio/mp3">';
 		echo '</audio>';
+		echo '</div><br>';
+		echo '<div class="commands">';
+		echo '<div class="edit">';
+		echo '<form method="POST" action="./?page=edit">';
+		echo '<button type="submit" value="' . $song["songID"] . '" name="songId">Edit</button>';
+		echo '</form>';
 		echo '</div>';
-		echo '<div class="commands"><button type="button">Edit</button><button type="button">Delete</button></div>';
+		echo '<div class="delete">';
+		echo '<form method="POST" action="./?page=delete">';
+		echo '<button type="submit" value="' . $song["songID"] . '" name="songId">Delete</button>';
+		echo '</form>';
+		echo '</div>';
+		echo '</div>';
 		echo '<br>';
 		}
 	} else {
