@@ -1,3 +1,4 @@
+<main>
 <?php
 if (isset($_GET['movieId'])) {
     $data = $db->getVideoDataById($_GET['movieId']);
@@ -29,3 +30,4 @@ if (isset($_GET['movieId'])) {
 <?php
 }
 ?>
+</main>
