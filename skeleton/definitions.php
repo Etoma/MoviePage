@@ -12,10 +12,7 @@ $content = $_GET["page"] ?: 'home';
 if($_POST['user']) {
 	$_SESSION['user'] = $db->getUserById($_POST['user']);
 }
-
-if(!$_SESSION['user']) {
-	$users = $db->getAllUsers();
-}
+$users = $db->getAllUsers();
 $mode = $_POST['mode'] ?: 'all';
 
 //for testing

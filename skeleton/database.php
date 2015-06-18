@@ -132,9 +132,14 @@ class database {
     public function changeVideo($title, $description, $movieId)
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
-        $sql = "UPDATE `movieandaudio`.`video` SET movieTitle = '$title', movieDescription = '$description' WHERE `movies`.`movieID` = $movieId";
+        $sql = "UPDATE `movieandaudio`.`movies` SET movieTitle = '$title', movieDescription = '$description' WHERE `movies`.`movieID` = $movieId";
         $mysqli->query($sql);
         $mysqli->close();
+    }
+
+    public function addUser($firstname, $lastname)
+    {
+
     }
 }
 $db = new database;

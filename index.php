@@ -1,8 +1,13 @@
 <?php
 include('skeleton/definitions.php');
-echo '<div id="content">';
 include('skeleton/head.php');
-include('view/' . $content . '.php');
+echo '<div id="content">';
+include('skeleton/header.php');
+if(!file_exists('./view/' . $content . '.php')) {
+	include('view/error.php');
+} else {
+	include('view/' . $content . '.php');
+}
 include('skeleton/footer.php');
 echo '</div>';
 ?>

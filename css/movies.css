@@ -1,0 +1,4 @@
+.edit, .delete {
+	display: inline-block;
+	float: left;
+}

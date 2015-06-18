@@ -6,7 +6,7 @@
 	</form>
 	<form action="./?page=upload" method="POST">
 		<button type="submit" value="video" name="mode">upload new video</button>
-	<form>
+	</form>
 	<br><br>
 	<?php 
 	if($mode === 'all')
@@ -28,12 +28,12 @@
 				echo '<div class="commands">';
 				echo '<div class="edit">';
 				echo '<form method="POST" action="./?page=edit">';
-				echo '<button type="submit" value="' . $video["movieID"] . '" name="songId">Edit</button>';
+				echo '<button type="submit" value="' . $video["movieID"] . '" name="movieId">Edit</button>';
 				echo '</form>';
 				echo '</div>';
 				echo '<div class="delete">';
 				echo '<form method="POST" action="./?page=delete">';
-				echo '<button type="submit" value="' . $video["movieID"] . '" name="songId">Delete</button>';
+				echo '<button type="submit" value="' . $video["movieID"] . '" name="movieId">Delete</button>';
 				echo '</form>';
 				echo '</div>';
 				echo '</div>';

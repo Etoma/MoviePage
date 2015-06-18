@@ -7,7 +7,7 @@ if($_POST['songId']) {
 }
 if($_POST['movieId']) {
 	$data = $db->getVideoDataById($_POST['movieId']);
-	unlink('videos/' . $data['songName']);
+	unlink('videos/' . $data['movieName']);
 	$db->deleteVideoById($_POST['movieId']);
 	header("Location: ./?page=movies");
 }

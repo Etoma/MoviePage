@@ -9,7 +9,7 @@ if($_POST['save'] === 'song')
 } 
 elseif($_POST['save'] === 'movie') 
 {
-	$db->changeMovie($_POST['videoTitle'], $_POST['videoDescription'], $_POST['movieId']);
+	$db->changeVideo($_POST['movieTitle'], $_POST['movieDescription'], $_POST['movieId']);
 	header("Location: ./?page=movies");
 	exit;
 }
@@ -30,7 +30,12 @@ elseif($_POST['movieId']) {
 	echo '<input type="hidden" value=' . $_POST['movieId'] . ' name="movieId">';
 }
 foreach ($data as $key => $entry) {
-	echo '<label for="' . $key . '">' . $key . '</label><input type="text" value="' . $entry . '" name="' . $key . '" id="' . $key . '"><br>';
+	if($key === 'movieDescription')
+	{
+		echo '<label for="' . $key . '">' . $key . '</label><textarea value="' . $entry . '" name="' . $key . '" id="' . $key . '">' . $entry . '</textarea><br>';
+	} else {
+		echo '<label for="' . $key . '">' . $key . '</label><input type="text" value="' . $entry . '" name="' . $key . '" id="' . $key . '"><br>';
+	}
 }
 ?>
 <button type="submit">Send</button>
