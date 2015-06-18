@@ -203,12 +203,102 @@ class database
         $mysqli->close();
     }
 
+    /**
+     * @param $fieldName
+     * @param $val
+     * @param $userId
+     */
     public function changeUser($fieldName, $val, $userId)
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $sql = "UPDATE movieandaudio.users SET $fieldName = '$val' WHERE userID = $userId";
         $mysqli->query($sql);
         $mysqli->close();
+    }
+
+    /**
+     * @param $mediaId
+     * @param $mediaType
+     * @param $userId
+     * @return bool
+     */
+    public function isFavorite($mediaId, $mediaType, $userId)
+    {
+        if ((int)$mediaType === 1) {
+            $table = 'movieFavorites';
+            $idName = 'movieID';
+        } elseif ((int)$mediaType === 2) {
+            $table = 'songFavorites';
+            $idName = 'songID';
+        }
+        $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
+        $sql = "SELECT * FROM $table WHERE $idName = $mediaId AND userID = $userId";
+        $result = $mysqli->query($sql);
+        $row = $result ? $result->fetch_assoc() : array();
+        $mysqli->close();
+        return count($row) ? true : false;
+    }
+
+    /**
+     * @param $mediaId
+     * @param $mediaType
+     * @param $userId
+     */
+    public function setFavorite($mediaId, $mediaType, $userId)
+    {
+        if ((int)$mediaType === 1) {
+            $table = 'movieFavorites';
+            $idName = 'movieID';
+        } elseif ((int)$mediaType === 2) {
+            $table = 'songFavorites';
+            $idName = 'songID';
+        }
+        $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
+        $sql = "INSERT INTO $table ($idName, userID) VALUES ($mediaId, $userId)";
+        $mysqli->query($sql);
+        $mysqli->close();
+    }
+
+    /**
+     * @param $mediaId
+     * @param $mediaType
+     * @param $userId
+     */
+    public function removeFavorite($mediaId, $mediaType, $userId)
+    {
+        if ((int)$mediaType === 1) {
+            $table = 'movieFavorites';
+            $idName = 'movieID';
+        } elseif ((int)$mediaType === 2) {
+            $table = 'songFavorites';
+            $idName = 'songID';
+        }
+        $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
+        $sql = "DELETE FROM $table WHERE $idName = $mediaId AND userID = $userId";
+        $mysqli->query($sql);
+        $mysqli->close();
+    }
+
+    /**
+     * @param $userId
+     * @return array
+     */
+    public function getFavoritesOfUser($userId)
+    {
+        $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
+        $result = $mysqli->query("SELECT * FROM movieFavorites JOIN movies ON movieFavorites.movieID = movies.movieID WHERE movieFavorites.userID = $userId");
+        $movieFavorites = array();
+        while ($row = $result ? $result->fetch_assoc() : 0) {
+            $movieFavorites[] = $row;
+        }
+        $result = $mysqli->query("SELECT * FROM songFavorites JOIN songs ON songFavorites.songID = songs.songID WHERE songFavorites.userID = $userId");
+        $songFavorites = array();
+        while ($row = $result ? $result->fetch_assoc() : 0) {
+            $songFavorites[] = $row;
+        }
+        $favorites = array_merge($movieFavorites, $songFavorites);
+        $mysqli->close();
+        return $favorites;
     }
 }
 

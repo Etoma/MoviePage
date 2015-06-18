@@ -2,11 +2,7 @@
     display: inline-block;
 }
 
-.commands {
-    margin-top: -1em;
-}
-
-.edit, .delete {
+.edit, .delete, .favorite {
     display: inline-block;
     float: left;
 }

@@ -1,0 +1,17 @@
+table, tr, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#detail-table {
+    width: 80%;
+    margin: 1em;
+}
+
+td {
+    width: 40%;
+}
+
+video {
+    margin: 1em;
+}

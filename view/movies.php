@@ -19,8 +19,12 @@
     if (count($movies)) {
         foreach ($movies as $video) {
             echo '<div class="video">';
-            echo '<a href="./?page=detail&movieId=' . $video["movieID"] . '">' . $video['movieTitle'] . '</a>';
-            echo '<br>';
+            echo '<div class="movie-title"><a href="./?page=detail&movieId=' . $video["movieID"] . '">' . $video['movieTitle'] . '</a>';
+            if (isset($_SESSION['user'])) {
+                $isFavorite = $db->isFavorite($video['movieID'], 1, $_SESSION['user']['userID']);
+                echo !$isFavorite ? '' : '<img src="./img/heart.png" width="20px" height="20px">';
+            }
+            echo '</div><br>';
             echo '<video controls width="320" height="240">';
             echo '<source src="./videos/' . $video['movieName'] . '" type="video/mp4">';
             echo '</video>';
@@ -35,6 +39,21 @@
             echo '<form method="POST" action="./?page=delete">';
             echo '<button type="submit" value="' . $video["movieID"] . '" name="movieId">Delete</button>';
             echo '</form>';
+            echo '</div>';
+            echo '<div class="favorite">';
+            if (isset($_SESSION['user'])) {
+                if (!$isFavorite) {
+                    echo '<form method="POST" action="./?page=favorite">';
+                    echo '<input type="hidden" name="mode" value="add">';
+                    echo '<button type="submit" value="' . $video["movieID"] . '" name="movieId">Favorite</button>';
+                    echo '</form>';
+                } else {
+                    echo '<form method="POST" action="./?page=favorite">';
+                    echo '<input type="hidden" name="mode" value="remove">';
+                    echo '<button type="submit" value="' . $video["movieID"] . '" name="movieId">Unfavorite</button>';
+                    echo '</form>';
+                }
+            }
             echo '</div>';
             echo '</div>';
             echo '<br><br>';

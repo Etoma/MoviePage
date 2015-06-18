@@ -1,7 +1,9 @@
-	<footer>
-		<hr>
-		By Etienne Scherrer<br>
-		<a href="mailto:scherrer@gyselroth.com">scherrer@gyselroth.com</a>
-	</footer>
+<footer>
+    <hr>
+    <div id="footer-container">
+        <span>By Etienne Scherrer</span>
+        <span id="footer-contact"><a href="./?page=contact">Contact me</a></span>
+    </div>
+</footer>
 </body>
 </html>

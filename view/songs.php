@@ -19,8 +19,12 @@
     if (count($music)) {
         foreach ($music as $song) {
             echo '<div class="song">';
-            echo $song['songArtist'] . ' - ' . $song['songTitle'];
-            echo '<br>';
+            echo '<div class="song-title"><a href="./?page=detail&songId=' . $song["songID"] . '">' . $song['songTitle'] . '</a>';
+            if (isset($_SESSION['user'])) {
+                $isFavorite = $db->isFavorite($song['songID'], 2, $_SESSION['user']['userID']);
+                echo !$isFavorite ? '' : '<img src="./img/heart.png" width="20px" height="20px">';
+            }
+            echo '</div><br>';
             echo '<audio controls>';
             echo '<source src="./music/' . $song['songName'] . '" type="audio/mp3">';
             echo '</audio>';
@@ -35,6 +39,21 @@
             echo '<form method="POST" action="./?page=delete">';
             echo '<button type="submit" value="' . $song["songID"] . '" name="songId">Delete</button>';
             echo '</form>';
+            echo '</div>';
+            echo '<div class="favorite">';
+            if (isset($_SESSION['user'])) {
+                if (!$isFavorite) {
+                    echo '<form method="POST" action="./?page=favorite">';
+                    echo '<input type="hidden" name="mode" value="add">';
+                    echo '<button type="submit" value="' . $song["songID"] . '" name="songId">Favorite</button>';
+                    echo '</form>';
+                } else {
+                    echo '<form method="POST" action="./?page=favorite">';
+                    echo '<input type="hidden" name="mode" value="remove">';
+                    echo '<button type="submit" value="' . $song["songID"] . '" name="songId">Unfavorite</button>';
+                    echo '</form>';
+                }
+            }
             echo '</div>';
             echo '</div>';
             echo '<br>';

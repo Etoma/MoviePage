@@ -8,7 +8,7 @@
     vertical-align: bottom;
 }
 
-.edit, .delete {
+.edit, .delete, .favorite {
     display: inline-block;
     float: left;
 }
