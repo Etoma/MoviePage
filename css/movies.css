@@ -1,3 +1,6 @@
+.commands {
+	margin-top: -1em;
+}
 .edit, .delete {
 	display: inline-block;
 	float: left;

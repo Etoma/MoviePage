@@ -19,7 +19,7 @@
 		{
 		foreach ($movies as $video) {
 				echo '<div class="video">';
-				echo $video['movieTitle'];
+				echo '<a href="./?page=detail&movieId=' . $video["movieID"] . '">' . $video['movieTitle'] . '</a>';
 				echo '<br>';
 				echo '<video controls width="320" height="240">';
 				echo '<source src="./videos/' . $video['movieName'] . '" type="video/mp4">';
@@ -37,7 +37,7 @@
 				echo '</form>';
 				echo '</div>';
 				echo '</div>';
-				echo '<br>';
+				echo '<br><br>';
 			}
 		} else {
 		echo 'No movies found';
