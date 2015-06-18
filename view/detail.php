@@ -10,7 +10,7 @@ if (isset($_GET['movieId'])) {
         }
         ?>
     </table>
-    <video controls autoplay>
+    <video controls autoplay width="90%">
         <source src="./videos/<?php echo $data['movieName'] ?>" type="video/mp4">
     </video>
 <?php
