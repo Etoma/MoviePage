@@ -2,7 +2,7 @@
     <h2>Upload</h2>
     <?php
     if ($mode === 'song') {
-        if ($_POST['submit']) {
+        if (isset($_POST['submit'])) {
             if (substr($_FILES["new-song"]["name"], -4) !== '.mp3') {
                 echo '<span class="failure">only mp3 files are allowed</span>';
             } else {
@@ -24,7 +24,7 @@
         </form>
     <?php
     } elseif ($mode === 'video') {
-        if ($_POST['submit']) {
+        if (isset($_POST['submit'])) {
             if (substr($_FILES["new-video"]["name"], -4) !== '.mp4') {
                 echo '<span class="failure">only mp4 files are allowed</span>';
             } else {

@@ -8,7 +8,7 @@
     <form action="./?page=upload" method="POST">
         <button type="submit" value="video" name="mode">upload new video</button>
     </form>
-    <br><br>
+    <br>
     <?php
     $movies = [];
     if ($mode === 'all') {

@@ -1,3 +1,7 @@
+.video {
+    display: inline-block;
+}
+
 .commands {
     margin-top: -1em;
 }

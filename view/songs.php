@@ -8,6 +8,7 @@
     <form action="./?page=upload" method="POST">
         <button type="submit" value="song" name="mode">upload new song</button>
     </form>
+    <br>
     <?php
     $music = [];
     if ($mode === 'all') {

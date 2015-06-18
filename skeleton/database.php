@@ -10,7 +10,7 @@ class database
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $result = $mysqli->query("SELECT * FROM users");
         $users = array();
-        while ($row = $result->fetch_assoc()) {
+        while ($row = $result ? $result->fetch_assoc() : 0) {
             $users[] = $row;
         }
         $mysqli->close();
@@ -38,7 +38,7 @@ class database
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $result = $mysqli->query("SELECT * FROM songs");
         $songs = array();
-        while ($row = $result->fetch_assoc()) {
+        while ($row = $result ? $result->fetch_assoc() : 0) {
             $songs[] = $row;
         }
         $mysqli->close();
@@ -55,7 +55,7 @@ class database
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $result = $mysqli->query("SELECT * FROM songs WHERE songTitle LIKE '%$search%'");
         $songs = array();
-        while ($row = $result->fetch_assoc()) {
+        while ($row = $result ? $result->fetch_assoc() : 0) {
             $songs[] = $row;
         }
         $mysqli->close();
@@ -70,7 +70,7 @@ class database
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $result = $mysqli->query("SELECT * FROM movies");
         $movies = array();
-        while ($row = $result->fetch_assoc()) {
+        while ($row = $result ? $result->fetch_assoc() : 0) {
             $movies[] = $row;
         }
         $mysqli->close();
@@ -87,7 +87,7 @@ class database
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $result = $mysqli->query("SELECT * FROM movies WHERE movieTitle LIKE '%$search%'");
         $movies = array();
-        while ($row = $result->fetch_assoc()) {
+        while ($row = $result ? $result->fetch_assoc() : 0) {
             $movies[] = $row;
         }
         $mysqli->close();
@@ -103,7 +103,7 @@ class database
     public function insertNewSong($filename, $title, $artist, $album)
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
-        $sql = "INSERT INTO `movieandaudio`.`songs` (`songName`, `songArtist`, `songAlbum`, `songTitle`) VALUES ('$filename', '$artist', '$album', '$title')";
+        $sql = "INSERT INTO movieandaudio.songs (songName, songArtist, songAlbum, songTitle) VALUES ('$filename', '$artist', '$album', '$title')";
         $mysqli->query($sql);
         $mysqli->close();
     }
@@ -111,7 +111,7 @@ class database
     public function insertNewVideo($filename, $title, $description)
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
-        $sql = "INSERT INTO `movieandaudio`.`movies` (`movieName`, `movieDescription`, `movieTitle`) VALUES ('$filename', '$description', '$title');";
+        $sql = "INSERT INTO movieandaudio.movies (movieName, movieDescription, movieTitle) VALUES ('$filename', '$description', '$title');";
         $mysqli->query($sql);
         $mysqli->close();
     }
@@ -124,7 +124,7 @@ class database
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $result = $mysqli->query("SELECT * FROM songs WHERE songID = $songId");
-        $row = $result->fetch_assoc();
+        $row = $result ? $result->fetch_assoc() : array();
         $mysqli->close();
         return $row;
     }
@@ -137,7 +137,7 @@ class database
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
         $result = $mysqli->query("SELECT * FROM movies WHERE movieID = $movieId");
-        $row = $result->fetch_assoc();
+        $row = $result ? $result->fetch_assoc() : array();
         $mysqli->close();
         return $row;
     }
@@ -148,7 +148,7 @@ class database
     public function deleteVideoById($movieId)
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
-        $sql = "DELETE FROM `movieandaudio`.`movies` WHERE `movies`.`movieID` = $movieId";
+        $sql = "DELETE FROM movieandaudio.movies WHERE movies.movieID = $movieId";
         $mysqli->query($sql);
         $mysqli->close();
     }
@@ -159,7 +159,7 @@ class database
     public function deleteSongById($songId)
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
-        $sql = "DELETE FROM `movieandaudio`.`songs` WHERE `songs`.`songID` = $songId";
+        $sql = "DELETE FROM movieandaudio.songs WHERE songs.songID = $songId";
         $mysqli->query($sql);
         $mysqli->close();
     }
@@ -173,7 +173,7 @@ class database
     public function changeSong($title, $artist, $album, $songId)
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
-        $sql = "UPDATE `movieandaudio`.`songs` SET songTitle = '$title', songArtist = '$artist', songAlbum = '$album' WHERE `songs`.`songID` = $songId";
+        $sql = "UPDATE movieandaudio.songs SET songTitle = '$title', songArtist = '$artist', songAlbum = '$album' WHERE songs.songID = $songId";
         $mysqli->query($sql);
         $mysqli->close();
     }
@@ -186,7 +186,7 @@ class database
     public function changeVideo($title, $description, $movieId)
     {
         $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
-        $sql = "UPDATE `movieandaudio`.`movies` SET movieTitle = '$title', movieDescription = '$description' WHERE `movies`.`movieID` = $movieId";
+        $sql = "UPDATE movieandaudio.movies SET movieTitle = '$title', movieDescription = '$description' WHERE movies.movieID = $movieId";
         $mysqli->query($sql);
         $mysqli->close();
     }
@@ -195,9 +195,20 @@ class database
      * @param $firstname
      * @param $lastname
      */
-    public function addUser($firstname, $lastname)
+    public function addUser($firstname, $lastname, $email)
     {
+        $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
+        $sql = "INSERT INTO movieandaudio.users (firstname, lastname, userEmail) VALUES ('$firstname', '$lastname', '$email')";
+        $mysqli->query($sql);
+        $mysqli->close();
+    }
 
+    public function changeUser($fieldName, $val, $userId)
+    {
+        $mysqli = new mysqli("localhost", "root", "", "movieandaudio");
+        $sql = "UPDATE movieandaudio.users SET $fieldName = '$val' WHERE userID = $userId";
+        $mysqli->query($sql);
+        $mysqli->close();
     }
 }
 
